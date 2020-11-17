@@ -3,6 +3,7 @@ from itsdangerous import TimedJSONWebSignatureSerializer
 from itsdangerous import SignatureExpired, BadSignature
 from flask import current_app
 from flask_login import UserMixin
+from datetime import datetime
 
 class UserRegister(UserMixin, db.Model):
     __tablename__ = 'UserRegister'
@@ -11,6 +12,10 @@ class UserRegister(UserMixin, db.Model):
     email = db.Column(db.String(50), unique=True, nullable=False)
     password_hash = db.Column(db.String(30), unique=True, nullable=False)
     confirm = db.Column(db.Boolean, default=False)
+    about_me = db.Column(db.Text())
+    location = db.Column(db.String(20))
+    regist_date = db.Column(db.DateTime(), default = datetime.utcnow())
+    last_login = db.Column(db.DateTime(), default = datetime.utcnow())
 
     @property
     def password(self):
@@ -44,12 +49,6 @@ class UserRegister(UserMixin, db.Model):
     def __repr__(self):
         return '帳號：{} email：{}'.format(self.username, self.email)
 
-@login_manager.user_loader
-def load_user(userID):
-    from app_blog.author.model import UserRegister
-    user = UserRegister.query.filter_by(id=userID).first()
-    if user:
-        return user
-    return None
 
-db.create_all()
+
+#db.create_all()

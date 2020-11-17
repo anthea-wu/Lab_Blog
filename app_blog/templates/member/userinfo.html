@@ -1,4 +1,5 @@
 {%extends 'base.html'%}
+{%import 'bootstrap/wtf.html' as wtf%}
 
 
 {%block head%}
@@ -30,14 +31,54 @@
         top: 115px;
         z-index: -1;
     }
-    
 
-    .registerFlower {
-        width: 65%;
+    form {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0;
+    }
+
+    /*每一個欄位名稱+輸入格*/
+    .form-group {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .form-control {
+        width: 230.09px;
+    }
+
+    /*每一個欄位名稱*/
+    .control-label {
+        width: 80px;
+        height: 38px;
+        margin-top: 8px;
+    }
+
+    /*提交表單的按鈕*/
+    form .btn-default {
+        background-color: #DCE1F4;
+    }
+
+    /*提示字元*/
+    .help-block {
         position: absolute;
-        right: 0;
-        top: 0;
-        z-index: -2;
+        right: -120px;
+        margin-top: 8px;
+    }
+    .help-block::before {
+        content: '';
+        display: block;
+        width: 120px;
+        height: 15px;
+        background-color: #DCE1F4;
+        opacity: 0.8;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        z-index: -1;
     }
 </style>
 {%endblock head%}
@@ -47,7 +88,9 @@
 <div class="container register">
     <div class="left">
         <h2>用戶資料</h2>
-        <p>暫不開放</p>
+        <div class="form col-md-4">
+            {{ wtf.quick_form(form) }}
+        </div>
     </div>
     <img src="{{ url_for('static', filename='image/register.jpg') }}" class="registerFlower">
 </div>
