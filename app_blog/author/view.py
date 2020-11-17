@@ -8,9 +8,7 @@ from flask_login import login_user, login_required, current_user, logout_user
 
 
 # 首頁
-@author.route('/')
-def index():
-    return render_template('index.html')
+# main
 
 
 # 註冊
@@ -63,7 +61,7 @@ def login():
     form = FormLogin()
     if current_user.is_authenticated:
         flash('你已經登入過帳號了')
-        return redirect(url_for('author.index'))
+        return redirect(url_for('main.index'))
     else:
         if form.validate_on_submit():
             user = UserRegister.query.filter_by(email=form.email.data).first()
@@ -72,7 +70,7 @@ def login():
                     session.permanent = True
                     login_user(user, form.remember_me.data)
                     next = request.args.get('next')
-                    return redirect(next) if next else redirect(url_for('author.index'))
+                    return redirect(next) if next else redirect(url_for('main.index'))
                 else:
                     flash('錯誤的E-mail或密碼')
             else:
@@ -99,7 +97,7 @@ def userinfo():
 # 確認帳號啟用狀態
 @author.before_app_request
 def before_request():
-    if current_user.is_authenticated and not current_user.confirm and request.endpoint not in ['re_userconfirm', 'logout', 'user_confirm', 'index'] and request.endpoint!='static' :
+    if current_user.is_authenticated and not current_user.confirm and request.endpoint not in ['author.re_userconfirm', 'author.logout', 'author.user_confirm', 'main.index'] and request.endpoint!='static' :
         flash('你的帳號還沒有啟用')
         return render_template('register/unactivate.html')
 
@@ -119,7 +117,7 @@ def re_userconfirm():
         token=token
     )
     flash('請確認你的註冊信箱，點擊網址來啟用帳號')
-    return redirect(url_for('author.index'))
+    return redirect(url_for('main.index'))
 
 
 # 更新密碼
@@ -143,7 +141,7 @@ def changepwd():
 @author.route('/resetpwd', methods=['GET', 'POST'])
 def resetpwd():
     if not current_user.is_anonymous:
-        return redirect(url_for('author.index'))
+        return redirect(url_for('main.index'))
 
     form = FormResetPWD_Mail()
     if form.validate_on_submit():
@@ -168,7 +166,7 @@ def resetpwd():
 @author.route('/resetPWD_recive/<token>', methods=['GET', 'POST'])
 def resetPWD_recive(token):
     if not current_user.is_anonymous:
-        return redirect(url_for('author.index'))
+        return redirect(url_for('main.index'))
     
     form = FormResetPWD()
     if form.validate_on_submit():
@@ -186,10 +184,10 @@ def resetPWD_recive(token):
             else:
                 flash
                 flash('搜尋不到用戶名稱')
-                return redirect(url_for('author.index'))
+                return redirect(url_for('main.index'))
         else:
             flash('認證錯誤！請重新申請一次並在10分鐘內設定新密碼')
-            return redirect(url_for('author.index'))
+            return redirect(url_for('main.index'))
     return render_template('member/resetPWD.html', form=form)
 
 

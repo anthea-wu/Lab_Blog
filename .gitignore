@@ -8,3 +8,8 @@ member/setting/__pycache__/form.cpython-38.pyc
 member/setting/__pycache__/model.cpython-38.pyc
 member/setting/__pycache__/view.cpython-38.pyc
 member/static/data/register.sqlite
+app_blog/main/__pycache__/view.cpython-38.pyc
+app_blog/main/__pycache__/__init__.cpython-38.pyc
+app_blog/author/__pycache__/view.cpython-38.pyc
+app_blog/__pycache__/__init__.cpython-38.pyc
+app_blog/author/__pycache__/view.cpython-38.pyc
