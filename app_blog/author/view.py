@@ -88,7 +88,7 @@ def logout():
 
 
 # 會員資料
-# main
+# person
 
 
 # 確認帳號啟用狀態

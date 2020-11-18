@@ -28,5 +28,8 @@ login_manager.session_protection = "strong"
 from .author import author
 app.register_blueprint(author, url_prefix='/author')
 
+from .person import person
+app.register_blueprint(person, url_prefix='/person')
+
 from .main import main
-app.register_blueprint(main, url_pre_fix='/main')
+app.register_blueprint(main, url_prefix='')
