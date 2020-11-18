@@ -14,3 +14,10 @@
 * 加入flask-migrate控制db內容
 >問題4：Circular Import  
 https://hackmd.io/@litchiMIAU/ByBNUgb9v
+---
+
+## 1118
+完成 06_UserInfo_如何處理abort
+完成 07_blog_main
+>待補充：登入和註冊的時間簡短  
+　　　　計算分鐘

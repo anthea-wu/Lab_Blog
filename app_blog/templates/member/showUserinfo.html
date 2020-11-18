@@ -49,9 +49,20 @@
     <div class="left">
         <h2>嗨，我是　{{user.username}}</h2>
         <p>我現在在　{{user.location}}</p>
+        <p>註冊日期　{{user.regist_date}}</p>
+        <p>上次登入　{{user.last_login}}</p>
         <hr>
         <h3>關於我？</h3>
         <p>{{user.about_me}}</p>
+        <hr>
+        {%if user.blog_mains%}
+            <h3>發布的書籍</h3>
+            <ul>
+                {%for blog_main in user.blog_mains%}
+                    <li>{{ blog_main.blog_name }}</li>
+                {%endfor%}
+            </ul>
+        {%endif%}
     </div>
     <img src="{{ url_for('static', filename='image/register.jpg') }}" class="registerFlower">
 </div>

@@ -17,7 +17,7 @@ def userinfo():
         db.session.add(current_user)
         db.session.commit()
         flash('個人資料更新成功')
-        return redirect(url_for('person.index'))
+        return redirect(url_for('main.index'))
     form.about_me.data = current_user.about_me
     form.location.data = current_user.location
     return render_template('member/userinfo.html', form=form)

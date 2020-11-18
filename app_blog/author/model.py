@@ -17,6 +17,8 @@ class UserRegister(UserMixin, db.Model):
     regist_date = db.Column(db.DateTime(), default = datetime.utcnow())
     last_login = db.Column(db.DateTime(), default = datetime.utcnow())
 
+    blog_mains = db.relationship('BlogMain', backref='user', lazy='dynamic')
+
     @property
     def password(self):
         raise AttributeError('這是一個未加密的密碼')
@@ -50,5 +52,12 @@ class UserRegister(UserMixin, db.Model):
         return '帳號：{} email：{}'.format(self.username, self.email)
 
 
+@login_manager.user_loader
+def load_user(userID):
+    from app_blog.author.model import UserRegister
+    user = UserRegister.query.filter_by(id=userID).first()
+    if user:
+        return user
+    return None
 
 #db.create_all()

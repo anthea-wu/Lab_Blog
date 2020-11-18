@@ -33,3 +33,6 @@ app.register_blueprint(person, url_prefix='/person')
 
 from .main import main
 app.register_blueprint(main, url_prefix='')
+
+from .blog import blog
+app.register_blueprint(blog, url_prefix='/blog')
