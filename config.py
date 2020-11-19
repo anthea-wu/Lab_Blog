@@ -5,7 +5,7 @@ class Config:
     path = os.path.abspath(os.path.dirname(__file__))
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(path, 'app_blog/static/data/register.sqlite')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(path, 'app_blog/static/data/Blog.sqlite')
     SECRET_KEY = os.environ.get('SECRET_KEY')
 
 

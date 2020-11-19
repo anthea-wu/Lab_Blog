@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect, url_for
-from app_blog.blog.form import FormBlogMain
+from app_blog.blog.form import FormBlogMain, FormBlogPost
 from app_blog.blog.model import BlogMain
 from app_blog import db
 from flask_login import login_required, current_user
@@ -24,3 +24,10 @@ def build_book():
         return redirect(url_for('person.show_uesrinfo', username = current_user.username))
 
     return render_template('blog/book_build.html', form=form)
+
+
+@blog.route('/postedit', methods=['GET', 'POST'])
+@login_required
+def post_edit():
+    form = FormBlogPost()
+    return render_template('blog/post_edit.html', form=form)

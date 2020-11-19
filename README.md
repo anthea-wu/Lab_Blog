@@ -21,3 +21,8 @@ https://hackmd.io/@litchiMIAU/ByBNUgb9v
 完成 07_blog_main
 >待補充：登入和註冊的時間簡短  
 　　　　計算分鐘
+---
+
+## 1119
+進行 08_blog_post_建立文章
+>問題5：沒有辦法query出所有blog
