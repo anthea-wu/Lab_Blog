@@ -188,3 +188,10 @@ def resetPWD_recive(token):
     return render_template('member/resetPWD.html', form=form)
 
 
+@login_manager.user_loader
+def load_user(userID):
+    from app_blog.author.model import UserRegister
+    user = UserRegister.query.filter_by(id=userID).first()
+    if user:
+        return user
+    return None
