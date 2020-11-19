@@ -24,5 +24,6 @@ https://hackmd.io/@litchiMIAU/ByBNUgb9v
 ---
 
 ## 1119
-進行 08_blog_post_建立文章
->問題5：沒有辦法query出所有blog
+完成 08_blog_post_建立文章
+>問題5：form沒有辦法輸入值  
+https://hackmd.io/@litchiMIAU/rkqV3QNcP

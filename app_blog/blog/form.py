@@ -28,8 +28,8 @@ class FormBlogPost(Form):
         validators.DataRequired()
     ])
 
-    blog = SelectField('書籍')
-    category = SelectField('分類')
+    blog = SelectField('書籍', coerce=int)
+    category = SelectField('分類', coerce=int)
 
     submit = SubmitField('送出')
 
@@ -39,9 +39,9 @@ class FormBlogPost(Form):
         self.category.choices = self._get_category()
 
     def _get_blog(self):
-        obj = BlogMain.query.with_entities(BlogMain.blog_name).filter_by(author=current_user._get_current_object().id).first()
+        obj = BlogMain.query.with_entities(BlogMain.id, BlogMain.blog_name).filter_by(author=current_user._get_current_object().id).all()
         return obj
 
     def _get_category(self):
-        obj = BlogCategory.query.with_entities(BlogCategory.name).all()
+        obj = BlogCategory.query.with_entities(BlogCategory.id, BlogCategory.name).all()
         return obj
