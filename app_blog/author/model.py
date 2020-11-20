@@ -14,8 +14,8 @@ class UserRegister(UserMixin, db.Model):
     confirm = db.Column(db.Boolean, default=False)
     about_me = db.Column(db.Text())
     location = db.Column(db.String(20))
-    regist_date = db.Column(db.DateTime(), default = datetime.utcnow())
-    last_login = db.Column(db.DateTime(), default = datetime.utcnow())
+    regist_date = db.Column(db.DateTime(), default = datetime.now())
+    last_login = db.Column(db.DateTime(), default = datetime.now())
 
     blog_mains = db.relationship('BlogMain', backref='user', lazy='dynamic')
 
@@ -49,7 +49,7 @@ class UserRegister(UserMixin, db.Model):
         return s.dumps( {'resetID': self.id} )
         
     def __repr__(self):
-        return '帳號：{} email：{}'.format(self.username, self.email)
+        return 'id：{}, username：{}, last_login'.format(self.id, self.username, self.last_login)
 
 
 @login_manager.user_loader

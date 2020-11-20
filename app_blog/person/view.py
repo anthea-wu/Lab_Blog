@@ -20,7 +20,7 @@ def userinfo():
         return redirect(url_for('main.index'))
     form.about_me.data = current_user.about_me
     form.location.data = current_user.location
-    return render_template('member/userinfo.html', form=form)
+    return render_template('member/userinfo.html', form=form, user=current_user)
 
 
 # 展示個人資料

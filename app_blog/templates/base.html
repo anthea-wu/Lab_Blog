@@ -15,6 +15,8 @@
       padding: 0;
       display: flex;
       flex-direction: column;
+      background-color: #F9FAFB;
+      padding-bottom: 100px;
     }
 
     nav {
@@ -53,10 +55,16 @@
         <ul class="navbar-nav">
           {% if current_user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('person.userinfo') }}">用戶資料</a>
+            <a class="nav-link" href="{{ url_for('person.userinfo') }}">修改資料</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('blog.edit_category') }}">分類管理</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('blog.build_book') }}">建立書籍</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('blog.post_edit') }}">發表文章</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('author.changepwd') }}">變更密碼</a>

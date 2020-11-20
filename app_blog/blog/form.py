@@ -18,6 +18,28 @@ class FormBlogMain(Form):
     submit = SubmitField('建立文章')
 
 
+class FormBlogCategory(Form):
+    category_create = StringField('分類', validators=[
+        validators.Length(0,30)
+    ])
+
+    submit = SubmitField('送出')
+
+
+class FormDeleteCategory(Form):
+    category_delete = SelectField('刪除分類', coerce=int)
+
+    submit = SubmitField('送出')
+
+    def __init__(self):
+            super(FormDeleteCategory, self).__init__()
+            self.category_delete.choices = self._get_category()
+
+    def _get_category(self):
+        obj = BlogCategory.query.with_entities(BlogCategory.id, BlogCategory.name).all()
+        return obj
+
+
 class FormBlogPost(Form):
     title = StringField('文章標題', validators=[
         validators.DataRequired(),

@@ -27,3 +27,12 @@ https://hackmd.io/@litchiMIAU/ByBNUgb9v
 完成 08_blog_post_建立文章
 >問題5：form沒有辦法輸入值  
 https://hackmd.io/@litchiMIAU/rkqV3QNcP
+
+---
+## 1120
+修改 頁面內容、調整建置
+* 用戶資料可以預覽
+* 登入時間  
+* 去掉標題背景、套用Bootstrap
+
+新增 分類管理

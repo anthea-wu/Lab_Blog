@@ -22,10 +22,8 @@
     form {
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
         margin: 0;
-        margin-top: 30px;
     }
 
     /*每一個欄位名稱+輸入格*/
@@ -35,7 +33,7 @@
     }
 
     .form-control {
-        width: 230.09px;
+        width: 180px;
     }
 
     /*每一個欄位名稱*/
@@ -48,6 +46,7 @@
     /*提交表單的按鈕*/
     form .btn-default {
         background-color: #DCE1F4;
+        height: 38px;
     }
 
     /*提示字元*/
@@ -56,7 +55,6 @@
         right: -120px;
         margin-top: 8px;
     }
-
     .help-block::before {
         content: '';
         display: block;
@@ -69,18 +67,6 @@
         top: 10px;
         z-index: -1;
     }
-
-    .top{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .show {
-        background-color: #DCE1F4;
-    }
-
-    .showLink {}
 </style>
 {%endblock head%}
 
@@ -88,14 +74,16 @@
 {%block content%}
 <div class="container register">
     <div class="left">
-        <div class="top col-md-4">
-            <h2>用戶資料</h2>
-            <a class="showLink" href="{{ url_for('person.show_uesrinfo', username=user.username) }}">
-                <button class="btn show">個人資料預覽</button>
-            </a>
-        </div>
         <div class="form col-md-4">
+            <h2>分類管理</h2>
+            <ul>
+                {%for category in categorys%}
+                    <li>{{ category.name }}</li>
+                {%endfor%}
+            </ul>
+            <hr>
             {{ wtf.quick_form(form) }}
+            {{ wtf.quick_form(form_delete) }}
         </div>
     </div>
     <img src="{{ url_for('static', filename='image/register.jpg') }}" class="registerFlower">

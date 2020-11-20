@@ -5,6 +5,8 @@ from app_blog.author.model import UserRegister
 from app_blog.author.form import FormRegister, FormLogin, FormChangePWD, FormResetPWD_Mail, FormResetPWD
 from app_blog.sendemail import send_mail
 from flask_login import login_user, login_required, current_user, logout_user
+from datetime import datetime
+from sqlalchemy import text
 
 
 # 首頁
@@ -70,6 +72,9 @@ def login():
                     session.permanent = True
                     login_user(user, form.remember_me.data)
                     next = request.args.get('next')
+                    update = UserRegister.query.filter_by(username=current_user.username).first()
+                    update.last_login = datetime.now()
+                    db.session.commit()
                     return redirect(next) if next else redirect(url_for('main.index'))
                 else:
                     flash('錯誤的E-mail或密碼')
